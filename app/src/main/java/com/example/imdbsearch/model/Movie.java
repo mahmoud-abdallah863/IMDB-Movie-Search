@@ -26,6 +26,10 @@ public class Movie {
     private List<String> writers = new ArrayList<>();
     private List<String> stars = new ArrayList<>();
 
+    public Movie(String title) {
+        this.title = title;
+    }
+
     private String summary;
     private String storyLine;
 
@@ -43,6 +47,14 @@ public class Movie {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getSmall_Poster() {
+        return small_Poster;
+    }
+
+    public void setSmall_Poster(String small_Poster) {
+        this.small_Poster = small_Poster;
     }
 
     public String getPoster() {

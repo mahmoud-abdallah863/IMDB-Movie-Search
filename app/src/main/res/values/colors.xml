@@ -7,4 +7,5 @@
 
     <color name="backgroundColor">#121212</color>
     <color name="IMDB_Yellow">#DBA506</color>
+    <color name="gray">#cacaca</color>
 </resources>

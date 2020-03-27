@@ -28,7 +28,7 @@ public class MainFragment extends Fragment {
 
     @BindView(R.id.movieName_editText)
     public EditText movieName_editText;
-    
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,8 +41,9 @@ public class MainFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        String str = "Easy search <font style='color:#DBA506'>movies</font>";
-        title_textView.setText(Html.fromHtml(str));
+        String str = "Easy search ";
+        String word = "<font color='#DBA506'>movies</font>";
+        title_textView.setText(Html.fromHtml(str + word));
     }
 
 
