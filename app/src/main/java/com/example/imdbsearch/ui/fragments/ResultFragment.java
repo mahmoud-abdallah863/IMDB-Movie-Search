@@ -55,13 +55,13 @@ public class ResultFragment extends Fragment implements MovieClickListener {
     public static List<Movie> movies;
 
     private static String movieTitle;
-    private boolean same = true;
+    private boolean same = false;
 
 
     public ResultFragment(String movieName) {
         if (movieTitle != null) {
             same = movieTitle.equalsIgnoreCase(movieName);
-        } else same = false;
+        }
         movieTitle = movieName;
     }
 
@@ -83,8 +83,11 @@ public class ResultFragment extends Fragment implements MovieClickListener {
         searchViewModel = ViewModelProviders.of(this).get(SearchViewModel.class);
         searchViewModel.init();
 
-        if (same) setRecycleView();
-        else searchMovie();
+        if (same || (movies != null && movies.size() > 0)) {
+            setRecycleView();
+            hideProgressBar();
+            Log.d(TAG, "onViewCreated: from cache");
+        } else searchMovie();
         observes();
     }
 

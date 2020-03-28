@@ -70,11 +70,15 @@ public class ShowMovie extends Fragment {
      */
     private SearchViewModel searchViewModel;
 
-    private String imdb_ID;
-    private Movie movie;
+    private static String imdb_ID;
+    private static Movie movie;
 
-    public ShowMovie(String imdb_ID) {
-        this.imdb_ID = imdb_ID;
+    private boolean same = false;
+
+    public ShowMovie(String _imdb_ID) {
+        if (imdb_ID != null)
+            same = imdb_ID.equalsIgnoreCase(_imdb_ID);
+        imdb_ID = _imdb_ID;
     }
 
 
@@ -93,8 +97,10 @@ public class ShowMovie extends Fragment {
         searchViewModel = ViewModelProviders.of(this).get(SearchViewModel.class);
         searchViewModel.init();
 
-        searchViewModel.getMovie(imdb_ID);
-
+        if (same) {
+            setData();
+            hideProgressBar();
+        }else searchViewModel.getMovie(imdb_ID);
         observers();
     }
 
@@ -112,7 +118,7 @@ public class ShowMovie extends Fragment {
         });
 
         searchViewModel.getError().observe(getViewLifecycleOwner(), err -> {
-            if(err != null && !err.isEmpty())
+            if (err != null && !err.isEmpty())
                 Log.d(TAG, "error : " + err);
         });
     }
