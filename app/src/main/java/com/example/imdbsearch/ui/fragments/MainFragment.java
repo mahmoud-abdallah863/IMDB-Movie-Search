@@ -53,6 +53,7 @@ public class MainFragment extends Fragment {
         if (movieName.length() != 0) {
             getActivity().getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, new ResultFragment(movieName))
+                    .addToBackStack("result")
                     .commit();
         } else {
             Toast.makeText(getContext(), "Please, enter a movie name", Toast.LENGTH_SHORT).show();

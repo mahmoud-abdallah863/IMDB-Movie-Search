@@ -7,5 +7,8 @@
 
     <color name="backgroundColor">#121212</color>
     <color name="IMDB_Yellow">#DBA506</color>
+    <color name="bright_Yellow">#F2DB83</color>
     <color name="gray">#cacaca</color>
+    <color name="blue">#2A84ED</color>
+
 </resources>

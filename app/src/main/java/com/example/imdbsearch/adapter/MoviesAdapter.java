@@ -21,9 +21,11 @@ import butterknife.ButterKnife;
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.myViewHolder> {
 
     private List<Movie> movies;
+    private MovieClickListener movieClickListener;
 
-    public MoviesAdapter(List<Movie> movies) {
+    public MoviesAdapter(List<Movie> movies, MovieClickListener movieClickListener) {
         this.movies = movies;
+        this.movieClickListener = movieClickListener;
     }
 
     @NonNull
@@ -31,7 +33,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.myViewHold
     public myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.result_movie_layout, parent, false);
-        return new myViewHolder(view);
+        return new myViewHolder(view, movieClickListener);
     }
 
     @Override
@@ -59,11 +61,13 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.myViewHold
         @BindView(R.id.movieName)
         public TextView movieName;
 
-        public myViewHolder(@NonNull View itemView) {
+        public myViewHolder(@NonNull View itemView, MovieClickListener movieClickListener) {
             super(itemView);
             ButterKnife.bind(this, itemView);
 
-            //click listener
+            itemView.setOnClickListener(v -> {
+                movieClickListener.onClick(getAdapterPosition());
+            });
         }
     }
 }

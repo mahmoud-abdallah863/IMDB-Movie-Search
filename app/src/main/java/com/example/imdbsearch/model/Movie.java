@@ -21,17 +21,37 @@ public class Movie {
     private String time;
     private String date_Published;
 
-    private List<String> genres = new ArrayList<>();
-    private List<String> directors = new ArrayList<>();
-    private List<String> writers = new ArrayList<>();
-    private List<String> stars = new ArrayList<>();
+    private ArrayList<String> genres = new ArrayList<>();
+    private ArrayList<String> directors = new ArrayList<>();
+    private ArrayList<String> writers = new ArrayList<>();
+    private ArrayList<String> stars = new ArrayList<>();
+
+    private String summary;
+    private String storyLine;
 
     public Movie(String title) {
         this.title = title;
     }
 
-    private String summary;
-    private String storyLine;
+    public Movie(String title, String small_Poster, String poster, String video_Link,
+                 String rating, Double imdb_rating, String time, String date_Published, ArrayList<String> genres,
+                 ArrayList<String> directors, ArrayList<String> writers, ArrayList<String> stars, String summary,
+                 String storyLine) {
+        this.title = title;
+        this.small_Poster = small_Poster;
+        this.poster = poster;
+        this.video_Link = video_Link;
+        this.rating = rating;
+        this.imdb_rating = imdb_rating;
+        this.time = time;
+        this.date_Published = date_Published;
+        this.genres = genres;
+        this.directors = directors;
+        this.writers = writers;
+        this.stars = stars;
+        this.summary = summary;
+        this.storyLine = storyLine;
+    }
 
     public String getImdb_ID() {
         return imdb_ID;
@@ -105,35 +125,35 @@ public class Movie {
         this.date_Published = date_Published;
     }
 
-    public List<String> getGenres() {
+    public ArrayList<String> getGenres() {
         return genres;
     }
 
-    public void setGenres(List<String> genres) {
+    public void setGenres(ArrayList<String> genres) {
         this.genres = genres;
     }
 
-    public List<String> getDirectors() {
+    public ArrayList<String> getDirectors() {
         return directors;
     }
 
-    public void setDirectors(List<String> directors) {
+    public void setDirectors(ArrayList<String> directors) {
         this.directors = directors;
     }
 
-    public List<String> getWriters() {
+    public ArrayList<String> getWriters() {
         return writers;
     }
 
-    public void setWriters(List<String> writers) {
+    public void setWriters(ArrayList<String> writers) {
         this.writers = writers;
     }
 
-    public List<String> getStars() {
+    public ArrayList<String> getStars() {
         return stars;
     }
 
-    public void setStars(List<String> stars) {
+    public void setStars(ArrayList<String> stars) {
         this.stars = stars;
     }
 

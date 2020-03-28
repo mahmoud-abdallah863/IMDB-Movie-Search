@@ -7,4 +7,12 @@
     <string name="back_button">Back Button</string>
     <string name="todo">todo</string>
     <string name="result">Result</string>
+    <string name="movie_poster">Movie Poster</string>
+    <string name="star">Star</string>
+    <string name="summary">Summary :</string>
+    <string name="genre">Genre :</string>
+    <string name="directors">Directors :</string>
+    <string name="writers">Writers :</string>
+    <string name="stars">Stars :</string>
+    <string name="story_line">Story Line :</string>
 </resources>

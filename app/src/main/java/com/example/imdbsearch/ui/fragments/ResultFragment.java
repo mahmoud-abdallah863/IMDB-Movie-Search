@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.imdbsearch.R;
+import com.example.imdbsearch.adapter.MovieClickListener;
 import com.example.imdbsearch.adapter.MoviesAdapter;
 import com.example.imdbsearch.model.Movie;
 
@@ -25,7 +26,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ResultFragment extends Fragment {
+public class ResultFragment extends Fragment implements MovieClickListener {
 
     @BindView(R.id.searchMovieName)
     public TextView searchMovieName;
@@ -39,6 +40,7 @@ public class ResultFragment extends Fragment {
     private MoviesAdapter adapter;
 
     private String movieName;
+    private ArrayList<Movie> movies;
 
 
     public ResultFragment(String movieName) {
@@ -60,6 +62,8 @@ public class ResultFragment extends Fragment {
 
 
         setMovieName();
+
+        makeMovies();
         initRecycleView();
     }
 
@@ -69,21 +73,28 @@ public class ResultFragment extends Fragment {
     }
 
     private void initRecycleView() {
-        adapter = new MoviesAdapter(makeMovies());
+        adapter = new MoviesAdapter(movies, this);
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleView.setAdapter(adapter);
         recycleView.setHasFixedSize(true);
     }
 
+    @Override
+    public void onClick(int position) {
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new ShowMovie(movies.get(position).getTitle()))
+                .addToBackStack("show")
+                .commit();
+    }
 
-    private List<Movie> makeMovies() {
+
+    private void makeMovies() {
         ArrayList<Movie> movies = new ArrayList<>();
         movies.add(new Movie("Iron man"));
         movies.add(new Movie("Iron man2"));
         movies.add(new Movie("Iron man3"));
         movies.add(new Movie("The hulk"));
         movies.add(new Movie("The Imitation Game"));
-        return movies;
+        this.movies = movies;
     }
-
 }
