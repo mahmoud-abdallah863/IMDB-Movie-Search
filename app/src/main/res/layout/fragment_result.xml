@@ -34,31 +34,46 @@
                     android:src="@drawable/back_icon" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <EditText
+                        android:id="@+id/movieName_editText"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:fontFamily="@font/rubik_medium"
-                        android:text="@string/result"
+                        android:layout_weight="1"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:padding="16dp"
                         android:textColor="@android:color/white"
-                        android:textSize="22sp"
-                        android:textStyle="bold" />
+                        android:textColorHint="#807F7F" />
 
-
-                    <TextView
-                        android:id="@+id/searchMovieName"
+                    <Button
+                        android:id="@+id/search_btn"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="8dp"
-                        android:gravity="center"
-                        android:textColor="@color/gray"
+                        android:layout_height="35dp"
+                        android:background="@drawable/search_button"
+                        android:text="@string/search"
+                        android:textAllCaps="false"
                         android:textSize="14sp" />
 
+
                 </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/rubik_medium"
+                    android:text="@string/result"
+                    android:textColor="@android:color/white"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycleView"
@@ -76,6 +91,7 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentBottom="true"
+                android:layout_centerVertical="true"
                 android:gravity="center">
 
                 <ProgressBar
@@ -87,8 +103,6 @@
         </RelativeLayout>
 
     </androidx.core.widget.NestedScrollView>
-
-
 
 
 </FrameLayout>

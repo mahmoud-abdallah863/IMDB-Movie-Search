@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -30,8 +32,11 @@ import butterknife.OnClick;
 
 public class ResultFragment extends Fragment implements MovieClickListener {
 
-    @BindView(R.id.searchMovieName)
-    public TextView searchMovieName;
+    @BindView(R.id.movieName_editText)
+    public EditText movieName_editText;
+
+    @BindView(R.id.search_btn)
+    public Button search_btn;
 
     @BindView(R.id.recycleView)
     public RecyclerView recycleView;
@@ -72,9 +77,12 @@ public class ResultFragment extends Fragment implements MovieClickListener {
         searchViewModel = ViewModelProviders.of(this).get(SearchViewModel.class);
         searchViewModel.init();
 
-        searchViewModel.searchMovie(movieTitle);
-
+        searchMovie();
         observes();
+    }
+
+    private void searchMovie(){
+        searchViewModel.searchMovie(movieTitle);
     }
 
     private void observes() {
@@ -98,8 +106,7 @@ public class ResultFragment extends Fragment implements MovieClickListener {
     }
 
     private void setMovieName() {
-        String str = "(" + this.movieTitle + ")";
-        searchMovieName.setText(str);
+        movieName_editText.setText(movieTitle);
     }
 
     private void setRecycleView() {
@@ -121,6 +128,17 @@ public class ResultFragment extends Fragment implements MovieClickListener {
     @OnClick(R.id.back_btn)
     void backButtonClicked() {
         getActivity().getSupportFragmentManager().popBackStack();
+    }
+
+
+    @OnClick(R.id.search_btn)
+    void searchButtonClicked(){
+        String str = movieName_editText.getText().toString();
+        if(!str.isEmpty()){
+            movieTitle = str;
+            searchMovie();
+        }
+
     }
 
 
