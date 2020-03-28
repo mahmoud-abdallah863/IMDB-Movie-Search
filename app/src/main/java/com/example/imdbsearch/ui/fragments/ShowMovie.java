@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.imdbsearch.R;
 import com.example.imdbsearch.model.Movie;
@@ -65,6 +67,10 @@ public class ShowMovie extends Fragment {
     @BindView(R.id.progressBarLayout)
     public LinearLayout progressBarLayout;
 
+    @BindView(R.id.dataLayout)
+    public NestedScrollView dataLayout;
+
+
     /**
      * Data
      */
@@ -100,7 +106,7 @@ public class ShowMovie extends Fragment {
         if (same) {
             setData();
             hideProgressBar();
-        }else searchViewModel.getMovie(imdb_ID);
+        } else searchViewModel.getMovie(imdb_ID);
         observers();
     }
 
@@ -119,7 +125,7 @@ public class ShowMovie extends Fragment {
 
         searchViewModel.getError().observe(getViewLifecycleOwner(), err -> {
             if (err != null && !err.isEmpty())
-                Log.d(TAG, "error : " + err);
+                Toast.makeText(getContext(), "Something wet wrong!!\nPlease try again later...", Toast.LENGTH_LONG).show();
         });
     }
 

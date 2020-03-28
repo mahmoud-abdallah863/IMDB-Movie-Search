@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.imdbsearch.R;
 import com.example.imdbsearch.adapter.MovieClickListener;
@@ -108,13 +109,12 @@ public class ResultFragment extends Fragment implements MovieClickListener {
         searchViewModel.isUpdating().observe(getViewLifecycleOwner(), aBoolean -> {
             if (aBoolean) {
                 showProgressBar();
-                Log.d(TAG, "observes: tada");
             } else hideProgressBar();
         });
 
         searchViewModel.getError().observe(getViewLifecycleOwner(), err -> {
             if (err != null && !err.isEmpty()) {
-                // show the error
+                Toast.makeText(getContext(), "Something we wrong!!\nPlease try again later...", Toast.LENGTH_LONG).show();
             }
         });
     }

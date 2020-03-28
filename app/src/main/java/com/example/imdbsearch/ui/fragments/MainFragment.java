@@ -51,6 +51,7 @@ public class MainFragment extends Fragment {
     void searchClicked() {
         String movieName = movieName_editText.getText().toString().trim();
         if (movieName.length() != 0) {
+            movieName_editText.setText("");
             getActivity().getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, new ResultFragment(movieName))
                     .addToBackStack("result")
