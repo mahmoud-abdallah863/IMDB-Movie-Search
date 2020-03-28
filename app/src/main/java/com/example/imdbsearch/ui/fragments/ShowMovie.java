@@ -90,6 +90,7 @@ public class ShowMovie extends Fragment {
     private void setData() {
         //dummy data
         movie = getMovie();
+
         Picasso.get()
                 .load(movie.getPoster())
                 .fit()

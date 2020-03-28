@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundColor"
     tools:context=".ui.fragments.MainFragment">
 
     <LinearLayout
@@ -20,7 +19,6 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/rubik_medium"
             android:gravity="center"
-            android:text="Easy search movies"
             android:textColor="@android:color/white"
             android:textSize="22sp"
             android:textStyle="bold" />
@@ -31,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="center"
-            android:hint="movie name..."
+            android:hint="@string/movie_name"
             android:inputType="text"
             android:maxLines="1"
             android:padding="16dp"

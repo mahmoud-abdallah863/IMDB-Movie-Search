@@ -27,7 +27,6 @@
                     android:id="@+id/image"
                     android:layout_width="100dp"
                     android:layout_height="120dp"
-                    android:background="#123123"
                     android:contentDescription="@string/movie_poster" />
 
                 <LinearLayout
@@ -50,7 +49,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/rubik_medium"
-                            android:text="Iron Man"
                             android:textColor="@android:color/white"
                             android:textSize="22sp"
                             android:textStyle="bold" />
@@ -60,7 +58,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/rubik_medium"
-                            android:text="7 May 2010 (USA)"
                             android:textColor="#7a7a7a"
                             android:textSize="10sp"
                             android:textStyle="bold" />
@@ -87,7 +84,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="4dp"
                             android:fontFamily="@font/rubik_medium"
-                            android:text="7.9/10"
                             android:textColor="@android:color/white"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -102,9 +98,8 @@
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/rubik_medium"
                         android:gravity="center_vertical"
-                        android:text="2h 4min"
                         android:textColor="@android:color/white"
-                        android:textSize="16dp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
 
@@ -134,7 +129,6 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
-                    android:text="With the world now aware of his identity as Iron Man, Tony Stark must contend with both his declining health and a vengeful mad man with ties to his father's legacy."
                     android:textColor="@color/gray"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -163,7 +157,6 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:fontFamily="@font/rubik_medium"
-                    android:text="Action | Adventure | Sci-Fi"
                     android:textColor="@color/gray"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -193,7 +186,6 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:fontFamily="@font/rubik_medium"
-                    android:text="Justin Theroux | Stan Lee | Robert Downey Jr. | Mickey Rourke | Gwyneth Paltrow"
                     android:textColor="@color/blue"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -223,7 +215,6 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:fontFamily="@font/rubik_medium"
-                    android:text="Mark Fergus | Hawk Ostby"
                     android:textColor="@color/blue"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -253,7 +244,6 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:fontFamily="@font/rubik_medium"
-                    android:text="Robert Downey Jr. |  Gwyneth Paltrow | Terrence Howard"
                     android:textColor="@color/blue"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -282,7 +272,6 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
-                    android:text="Tony Stark. Genius, billionaire, playboy, philanthropist. Son of legendary inventor and weapons contractor Howard Stark. When Tony Stark is assigned to give a weapons presentation to an Iraqi unit led by Lt. Col. James Rhodes, he's given a ride on enemy lines. That ride ends badly when Stark's Humvee that he's riding in is attacked by enemy combatants. He survives - barely - with a chest full of shrapnel and a car battery attached to his heart. In order to survive he comes up with a way to miniaturize the battery and figures ..."
                     android:textColor="@color/gray"
                     android:textSize="14sp"
                     android:textStyle="bold" />

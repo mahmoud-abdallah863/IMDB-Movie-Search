@@ -40,10 +40,10 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.myViewHold
     public void onBindViewHolder(@NonNull myViewHolder holder, int position) {
         Movie movie = movies.get(position);
 
-//        Picasso.get()
-//                .load(movie.getSmall_Poster())
-//                .fit()
-//                .into(holder.image);
+        Picasso.get()
+                .load(movie.getSmall_Poster())
+                .fit()
+                .into(holder.image);
 
         holder.movieName.setText(movie.getTitle());
     }
