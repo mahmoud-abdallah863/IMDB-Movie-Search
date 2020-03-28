@@ -17,6 +17,7 @@ public class SearchViewModel extends ViewModel {
     private SearchRepository sRepo;
 
     private MutableLiveData<List<Movie>> moviesList = new MutableLiveData<>();
+    private MutableLiveData<Movie> movie = new MutableLiveData<>();
 
     private MutableLiveData<Boolean> isUpdating = new MutableLiveData<>();
     private MutableLiveData<String> error = new MutableLiveData<>();
@@ -48,9 +49,32 @@ public class SearchViewModel extends ViewModel {
         });
     }
 
+    public void getMovie(String imdb_ID) {
+        isUpdating.postValue(true);
+        sRepo.getMovie(imdb_ID, new SearchRepository.GetMovieCallBack() {
+            @Override
+            public void onSuccess(Movie _movie) {
+                movie.postValue(_movie);
+                isUpdating.postValue(false);
+                error.postValue(null);
+            }
+
+            @Override
+            public void onFail(String str) {
+                movie.postValue(null);
+                isUpdating.postValue(false);
+                error.postValue(str);
+            }
+        });
+    }
+
 
     public LiveData<List<Movie>> getMovies() {
         return moviesList;
+    }
+
+    public LiveData<Movie> getMovie() {
+        return movie;
     }
 
     public LiveData<Boolean> isUpdating() {

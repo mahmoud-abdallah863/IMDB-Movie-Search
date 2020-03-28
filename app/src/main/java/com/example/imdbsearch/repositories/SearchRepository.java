@@ -1,6 +1,8 @@
 package com.example.imdbsearch.repositories;
 
 
+import android.util.Log;
+
 import com.example.imdbsearch.model.Movie;
 import com.example.imdbsearch.model.myRetrofit;
 
@@ -16,6 +18,7 @@ import retrofit2.Retrofit;
 
 public class SearchRepository {
 
+    private static final String TAG = "shit";
     private static SearchRepository instance;
 
 
@@ -60,8 +63,43 @@ public class SearchRepository {
     }
 
 
+    public void getMovie(String imdb_ID, final GetMovieCallBack getMovieCallBack) {
+        Call<Movie> call = retrofitInterface.getMovie(imdb_ID);
+
+        call.enqueue(new Callback<Movie>() {
+            @Override
+            public void onResponse(Call<Movie> call, Response<Movie> response) {
+                if (response.isSuccessful()) {
+                    getMovieCallBack.onSuccess(response.body());
+                    Log.d(TAG, "success");
+                } else {
+                    try {
+                        getMovieCallBack.onFail(response.errorBody().string());
+                        Log.d(TAG, "fail" + response.errorBody().string());
+                    } catch (IOException e) {
+                        getMovieCallBack.onFail(e.getMessage());
+                        Log.d(TAG, "fail > catch : " + e.getMessage());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Movie> call, Throwable t) {
+                getMovieCallBack.onFail(t.toString());
+                Log.d(TAG, "failer : " + t.getMessage());
+            }
+        });
+    }
+
+
     public interface SearchCallBack {
         void onSuccess(List<Movie> movies);
+
+        void onFail(String str);
+    }
+
+    public interface GetMovieCallBack {
+        void onSuccess(Movie movie);
 
         void onFail(String str);
     }

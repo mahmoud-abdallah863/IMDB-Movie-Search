@@ -5,19 +5,21 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.imdbsearch.R;
 import com.example.imdbsearch.model.Movie;
+import com.example.imdbsearch.viewmodels.SearchViewModel;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -26,6 +28,7 @@ import butterknife.ButterKnife;
 
 public class ShowMovie extends Fragment {
 
+    private static final String TAG = "shit";
     @BindView(R.id.image)
     public ImageView poster;
 
@@ -59,10 +62,14 @@ public class ShowMovie extends Fragment {
     @BindView(R.id.storyLineText)
     public TextView storyLineText;
 
+    @BindView(R.id.progressBarLayout)
+    public LinearLayout progressBarLayout;
 
     /**
      * Data
      */
+    private SearchViewModel searchViewModel;
+
     private String imdb_ID;
     private Movie movie;
 
@@ -83,14 +90,41 @@ public class ShowMovie extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        setData();
+        Log.d("shit", "imdb id : " + imdb_ID);
+
+
+        searchViewModel = ViewModelProviders.of(this).get(SearchViewModel.class);
+        searchViewModel.init();
+
+        searchViewModel.getMovie(imdb_ID);
+
+        observers();
+    }
+
+    private void observers() {
+        searchViewModel.getMovie().observe(getViewLifecycleOwner(), _movie -> {
+            if (_movie != null) {
+                movie = _movie;
+                Log.d("shit", "title: " + movie.getTitle());
+                setData();
+            }else{
+                Log.d(TAG, "movie is null");
+            }
+        });
+
+        searchViewModel.isUpdating().observe(getViewLifecycleOwner(), aBoolean -> {
+            if (aBoolean) showProgressBar();
+            else hideProgressBar();
+        });
+
+        searchViewModel.getError().observe(getViewLifecycleOwner(), err -> {
+            if(err != null && !err.isEmpty())
+                Log.d(TAG, "error : " + err);
+        });
     }
 
 
     private void setData() {
-        //dummy data
-        movie = getMovie();
-
         Picasso.get()
                 .load(movie.getPoster())
                 .fit()
@@ -109,17 +143,7 @@ public class ShowMovie extends Fragment {
         storyLineText.setText(movie.getStoryLine());
     }
 
-    private Movie getMovie() {
-        return new Movie("Iron man", "smallPoster", "poster", "video_link", "rating", 8.0, "2h 1m", "2 May 2008",
-                new ArrayList<String>(Arrays.asList("Action", "Sci-Fi")),
-                new ArrayList<String>(Arrays.asList("director a", "director b")),
-                new ArrayList<String>(Arrays.asList("writer a", "writer b")),
-                new ArrayList<String>(Arrays.asList("robert jr.", "x")),
-                "This is the summary of the film",
-                "This is the story line of the entire film");
-    }
-
-    private String listToString(ArrayList<String> list) {
+    private String listToString(List<String> list) {
         StringBuffer str = new StringBuffer();
         int size = list.size();
         for (int i = 0; i < size; i++) {
@@ -128,5 +152,13 @@ public class ShowMovie extends Fragment {
                 str.append(" | ");
         }
         return str.toString();
+    }
+
+    private void showProgressBar() {
+        progressBarLayout.setVisibility(View.VISIBLE);
+    }
+
+    private void hideProgressBar() {
+        progressBarLayout.setVisibility(View.GONE);
     }
 }

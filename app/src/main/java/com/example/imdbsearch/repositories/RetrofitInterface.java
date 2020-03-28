@@ -16,6 +16,9 @@ import retrofit2.http.Path;
 public interface RetrofitInterface {
 
 
-    @GET("/search/{title}")
+    @GET("search/{title}")
     Call<List<Movie>> searchMovie(@Path("title") String title);
+
+    @GET("movie/{imdbID}")
+    Call<Movie> getMovie(@Path("imdbID") String imdbID);
 }

@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -110,6 +111,7 @@ public class ResultFragment extends Fragment implements MovieClickListener {
 
     @Override
     public void onClick(int position) {
+        Log.d("shit", "imdb-id : " + movies.get(position).getImdb_ID());
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, new ShowMovie(movies.get(position).getImdb_ID()))
                 .addToBackStack("show")

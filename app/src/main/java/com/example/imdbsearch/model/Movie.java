@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Movie {
-    @SerializedName("imdbID")
     private String imdb_ID;
 
     private String title;
@@ -21,37 +20,14 @@ public class Movie {
     private String time;
     private String date_Published;
 
-    private ArrayList<String> genres = new ArrayList<>();
-    private ArrayList<String> directors = new ArrayList<>();
-    private ArrayList<String> writers = new ArrayList<>();
-    private ArrayList<String> stars = new ArrayList<>();
+    private List<String> genres = new ArrayList<>();
+    private List<String> directors = new ArrayList<>();
+    private List<String> writers = new ArrayList<>();
+    private List<String> stars = new ArrayList<>();
 
     private String summary;
     private String storyLine;
 
-    public Movie(String title) {
-        this.title = title;
-    }
-
-    public Movie(String title, String small_Poster, String poster, String video_Link,
-                 String rating, Double imdb_rating, String time, String date_Published, ArrayList<String> genres,
-                 ArrayList<String> directors, ArrayList<String> writers, ArrayList<String> stars, String summary,
-                 String storyLine) {
-        this.title = title;
-        this.small_Poster = small_Poster;
-        this.poster = poster;
-        this.video_Link = video_Link;
-        this.rating = rating;
-        this.imdb_rating = imdb_rating;
-        this.time = time;
-        this.date_Published = date_Published;
-        this.genres = genres;
-        this.directors = directors;
-        this.writers = writers;
-        this.stars = stars;
-        this.summary = summary;
-        this.storyLine = storyLine;
-    }
 
     public String getImdb_ID() {
         return imdb_ID;
@@ -125,7 +101,7 @@ public class Movie {
         this.date_Published = date_Published;
     }
 
-    public ArrayList<String> getGenres() {
+    public List<String> getGenres() {
         return genres;
     }
 
@@ -133,7 +109,7 @@ public class Movie {
         this.genres = genres;
     }
 
-    public ArrayList<String> getDirectors() {
+    public List<String> getDirectors() {
         return directors;
     }
 
@@ -141,7 +117,7 @@ public class Movie {
         this.directors = directors;
     }
 
-    public ArrayList<String> getWriters() {
+    public List<String> getWriters() {
         return writers;
     }
 
@@ -149,7 +125,7 @@ public class Movie {
         this.writers = writers;
     }
 
-    public ArrayList<String> getStars() {
+    public List<String> getStars() {
         return stars;
     }
 
