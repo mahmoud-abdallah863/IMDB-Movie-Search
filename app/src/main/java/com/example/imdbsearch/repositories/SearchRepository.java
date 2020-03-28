@@ -62,7 +62,6 @@ public class SearchRepository {
         });
     }
 
-
     public void getMovie(String imdb_ID, final GetMovieCallBack getMovieCallBack) {
         Call<Movie> call = retrofitInterface.getMovie(imdb_ID);
 
@@ -71,14 +70,12 @@ public class SearchRepository {
             public void onResponse(Call<Movie> call, Response<Movie> response) {
                 if (response.isSuccessful()) {
                     getMovieCallBack.onSuccess(response.body());
-                    Log.d(TAG, "success");
                 } else {
                     try {
                         getMovieCallBack.onFail(response.errorBody().string());
                         Log.d(TAG, "fail" + response.errorBody().string());
                     } catch (IOException e) {
                         getMovieCallBack.onFail(e.getMessage());
-                        Log.d(TAG, "fail > catch : " + e.getMessage());
                     }
                 }
             }
@@ -86,7 +83,6 @@ public class SearchRepository {
             @Override
             public void onFailure(Call<Movie> call, Throwable t) {
                 getMovieCallBack.onFail(t.toString());
-                Log.d(TAG, "failer : " + t.getMessage());
             }
         });
     }

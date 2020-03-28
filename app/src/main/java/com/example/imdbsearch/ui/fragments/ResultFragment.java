@@ -30,8 +30,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+
 public class ResultFragment extends Fragment implements MovieClickListener {
 
+    private static final String TAG = "shit";
     @BindView(R.id.movieName_editText)
     public EditText movieName_editText;
 
@@ -50,13 +52,17 @@ public class ResultFragment extends Fragment implements MovieClickListener {
     private SearchViewModel searchViewModel;
 
     private MoviesAdapter adapter;
+    public static List<Movie> movies;
 
-    private String movieTitle;
-    private List<Movie> movies;
+    private static String movieTitle;
+    private boolean same = true;
 
 
     public ResultFragment(String movieName) {
-        this.movieTitle = movieName;
+        if (movieTitle != null) {
+            same = movieTitle.equalsIgnoreCase(movieName);
+        } else same = false;
+        movieTitle = movieName;
     }
 
 
@@ -77,11 +83,13 @@ public class ResultFragment extends Fragment implements MovieClickListener {
         searchViewModel = ViewModelProviders.of(this).get(SearchViewModel.class);
         searchViewModel.init();
 
-        searchMovie();
+        if (same) setRecycleView();
+        else searchMovie();
         observes();
     }
 
-    private void searchMovie(){
+
+    private void searchMovie() {
         searchViewModel.searchMovie(movieTitle);
     }
 
@@ -132,9 +140,9 @@ public class ResultFragment extends Fragment implements MovieClickListener {
 
 
     @OnClick(R.id.search_btn)
-    void searchButtonClicked(){
+    void searchButtonClicked() {
         String str = movieName_editText.getText().toString();
-        if(!str.isEmpty()){
+        if (!str.isEmpty()) {
             movieTitle = str;
             searchMovie();
         }

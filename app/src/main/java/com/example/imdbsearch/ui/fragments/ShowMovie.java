@@ -90,9 +90,6 @@ public class ShowMovie extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Log.d("shit", "imdb id : " + imdb_ID);
-
-
         searchViewModel = ViewModelProviders.of(this).get(SearchViewModel.class);
         searchViewModel.init();
 
@@ -105,10 +102,7 @@ public class ShowMovie extends Fragment {
         searchViewModel.getMovie().observe(getViewLifecycleOwner(), _movie -> {
             if (_movie != null) {
                 movie = _movie;
-                Log.d("shit", "title: " + movie.getTitle());
                 setData();
-            }else{
-                Log.d(TAG, "movie is null");
             }
         });
 
