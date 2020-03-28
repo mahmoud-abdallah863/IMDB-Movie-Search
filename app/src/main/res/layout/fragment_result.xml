@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.ResultFragment">
 
     <androidx.core.widget.NestedScrollView
@@ -48,6 +49,8 @@
                         android:inputType="text"
                         android:maxLines="1"
                         android:padding="16dp"
+                        android:layout_marginEnd="16dp"
+                        app:backgroundTint="@color/IMDB_Yellow"
                         android:textColor="@android:color/white"
                         android:textColorHint="#807F7F" />
 
@@ -63,17 +66,32 @@
 
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/rubik_medium"
-                    android:text="@string/result"
-                    android:textColor="@android:color/white"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/rubik_medium"
+                        android:text="@string/result"
+                        android:textColor="@android:color/white"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true" />
+
+                </RelativeLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycleView"
@@ -82,22 +100,6 @@
                     android:layout_marginTop="16dp"
                     android:overScrollMode="never" />
 
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/progressBarLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentBottom="true"
-                android:layout_centerVertical="true"
-                android:gravity="center">
-
-                <ProgressBar
-                    android:id="@+id/progressBar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
             </LinearLayout>
 
         </RelativeLayout>

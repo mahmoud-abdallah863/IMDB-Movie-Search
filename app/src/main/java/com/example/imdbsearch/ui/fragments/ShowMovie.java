@@ -144,7 +144,7 @@ public class ShowMovie extends Fragment {
     }
 
     private String listToString(List<String> list) {
-        StringBuffer str = new StringBuffer();
+        StringBuilder str = new StringBuilder();
         int size = list.size();
         for (int i = 0; i < size; i++) {
             str.append(list.get(i));

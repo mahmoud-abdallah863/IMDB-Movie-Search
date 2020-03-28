@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.imdbsearch.R;
@@ -43,8 +44,8 @@ public class ResultFragment extends Fragment implements MovieClickListener {
     @BindView(R.id.recycleView)
     public RecyclerView recycleView;
 
-    @BindView(R.id.progressBarLayout)
-    public LinearLayout progressBarLayout;
+    @BindView(R.id.progressBar)
+    public ProgressBar progressBar;
 
     /**
      * Data
@@ -105,8 +106,10 @@ public class ResultFragment extends Fragment implements MovieClickListener {
         });
 
         searchViewModel.isUpdating().observe(getViewLifecycleOwner(), aBoolean -> {
-            if (aBoolean) showProgressBar();
-            else hideProgressBar();
+            if (aBoolean) {
+                showProgressBar();
+                Log.d(TAG, "observes: tada");
+            } else hideProgressBar();
         });
 
         searchViewModel.getError().observe(getViewLifecycleOwner(), err -> {
@@ -129,7 +132,6 @@ public class ResultFragment extends Fragment implements MovieClickListener {
 
     @Override
     public void onClick(int position) {
-        Log.d("shit", "imdb-id : " + movies.get(position).getImdb_ID());
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, new ShowMovie(movies.get(position).getImdb_ID()))
                 .addToBackStack("show")
@@ -154,10 +156,10 @@ public class ResultFragment extends Fragment implements MovieClickListener {
 
 
     private void showProgressBar() {
-        progressBarLayout.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     private void hideProgressBar() {
-        progressBarLayout.setVisibility(View.GONE);
+        progressBar.setVisibility(View.INVISIBLE);
     }
 }
