@@ -64,6 +64,8 @@ public class ResultFragment extends Fragment implements MovieClickListener {
         if (movieTitle != null) {
             same = movieTitle.equalsIgnoreCase(movieName);
         }
+        if(!same && movies != null)
+            movies.clear();
         movieTitle = movieName;
     }
 
@@ -88,7 +90,6 @@ public class ResultFragment extends Fragment implements MovieClickListener {
         if (same || (movies != null && movies.size() > 0)) {
             setRecycleView();
             hideProgressBar();
-            Log.d(TAG, "onViewCreated: from cache");
         } else searchMovie();
         observes();
     }
