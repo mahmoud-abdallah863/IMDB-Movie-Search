@@ -38,6 +38,7 @@
                         android:layout_height="wrap_content"
                         android:contentDescription="@string/movie_poster"
                         android:minWidth="120dp"
+                        android:background="@color/gray"
                         android:minHeight="170dp" />
 
                     <LinearLayout
